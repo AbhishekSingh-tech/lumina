@@ -28,7 +28,7 @@ def predict(args_dict,pipe : FluxPipeline):
         guidance_scale=3.5,
         num_inference_steps=50,
         max_sequence_length=512,
-        generator=torch.Generator("cuda").manual_seed(0)
+        generator=torch.Generator().manual_seed(0)
     ).images[0]
     buffer = io.BytesIO()
     image.save(buffer, format='PNG')
