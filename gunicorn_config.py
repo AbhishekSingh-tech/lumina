@@ -1,7 +1,11 @@
 import os
+import multiprocessing
 
-workers = int(os.environ.get('GUNICORN_PROCESSES', '2'))
-threads = int(os.environ.get('GUNICORN_THREADS', '1'))
+# Use the Gevent worker class for better performance and concurrency
+worker_class = 'gevent'
+
+workers = int(os.environ.get('GUNICORN_PROCESSES', multiprocessing.cpu_count()))
+threads = int(os.environ.get('GUNICORN_THREADS', '7'))
 timeout = int(os.environ.get('GUNICORN_TIMEOUT', '120'))
 bind = os.environ.get('GUNICORN_BIND', '0.0.0.0:8080')
 
