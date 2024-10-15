@@ -8,10 +8,10 @@ class PipeProvider:
         pass
 
     def load_pipe(self):
-        print("Logging into hugging face")
-        login(token="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")
-        print("Calling load_pipe...")
-        pipe = DiffusionPipeline.from_pretrained("black-forest-labs/FLUX.1-dev",torch_dtype=torch.bfloat16, device_map="balanced")
-        pipe.save_pretrained("wsgi_runtime/model")
-        # pipe = FluxPipeline.from_pretrained("models/lumina_model", torch_dtype=torch.bfloat16, device_map="balanced")        
+        # print("Logging into hugging face")
+        # login(token="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")
+        print("Loading pipe from memory...")
+        # pipe = DiffusionPipeline.from_pretrained("black-forest-labs/FLUX.1-dev",torch_dtype=torch.bfloat16, device_map="balanced")
+        # pipe.save_pretrained("wsgi_runtime/model")
+        pipe = FluxPipeline.from_pretrained("wsgi_runtime/model", torch_dtype=torch.bfloat16, device_map="balanced")        
         return pipe
